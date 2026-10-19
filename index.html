@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b33">
+  <title>Atmos — Weather Forecast</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span> atmos<span class="brand-dot">.</span></a>
+    <nav><a href="#forecast">Forecast</a><a href="#about">About</a><a class="admin-link" href="admin.html">Admin</a></nav>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow"><span class="live-dot"></span> LIVE WEATHER, WHEREVER YOU ARE</div>
+      <h1>Understand your <span>sky.</span></h1>
+      <p class="intro">Clear, reliable weather forecasts for the moments that matter.</p>
+      <div class="search-row">
+        <input id="cityInput" type="search" placeholder="Search a city, e.g. Islamabad" aria-label="Search city">
+        <button id="citySearch" class="button button-ghost">Search city</button>
+        <button id="locationBtn" class="button button-primary">◎ Use my location</button>
+      </div>
+      <p id="status" class="status" role="status">Search for a city or choose “Use my location”.</p>
+    </section>
+
+    <section id="currentPanel" class="weather-card">
+      <div class="weather-card-top">
+        <div><p class="eyebrow">CURRENT CONDITIONS</p><h2 id="placeName">Your weather</h2><p id="localDate" class="muted">Live forecast</p></div>
+        <div id="weatherIcon" class="weather-icon">☁</div>
+      </div>
+      <div class="current-main">
+        <div><span id="temperature" class="temperature">--°</span><p id="condition" class="condition">Search a city to begin</p></div>
+        <div class="current-stats">
+          <div class="stat"><span>Feels like</span><strong id="feelsLike">--°</strong></div>
+          <div class="stat"><span>Humidity</span><strong id="humidity">--%</strong></div>
+          <div class="stat"><span>Wind</span><strong id="wind">-- km/h</strong></div>
+        </div>
+      </div>
+      <div class="coordinates" id="coordinates">Coordinates appear here when you choose to share your location.</div>
+    </section>
+
+    <section id="forecast" class="section">
+      <div class="section-heading"><div><p class="eyebrow">THE NEXT HOURS</p><h2>Hourly forecast</h2></div><span class="muted">Next 24 hours</span></div>
+      <div id="hourly" class="hourly-grid"><div class="empty-state">Weather forecast will appear here.</div></div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="eyebrow">PLAN AHEAD</p><h2>7-day forecast</h2></div></div>
+      <div id="daily" class="daily-list"><div class="empty-state">Search a city or share your location to load the forecast.</div></div>
+    </section>
+
+    <section id="about" class="privacy-note">
+      <div class="privacy-icon">⌖</div>
+      <div><h3>Your location, your choice</h3><p>Your browser only shares location after you choose the location button and approve the browser prompt. Saving coordinates to our database is a separate, optional choice. If you decline, you can still search for a city and view its weather.</p></div>
+    </section>
+  </main>
+  <footer><span>© <span id="year"></span> Atmos Weather</span><span>Weather data: Open-Meteo</span><a href="admin.html">Administrator sign-in</a></footer>
+
+  <dialog id="consentDialog">
+    <form method="dialog" class="dialog-content">
+      <div class="dialog-icon">⌖</div><h2>Use your current location?</h2>
+      <p>To show local weather, your browser can share your coordinates after you approve its permission prompt.</p>
+      <label class="check-row"><input type="checkbox" id="storeConsent"><span><strong>Optional: save my coordinates</strong><small>I agree that my latitude, longitude, reported accuracy and timestamp will be stored for the website administrator to review. I can use the weather service without agreeing to storage.</small></span></label>
+      <div class="dialog-actions"><button class="button button-ghost" value="cancel">Cancel</button><button id="continueLocation" class="button button-primary" value="continue">Continue</button></div>
+    </form>
+  </dialog>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
