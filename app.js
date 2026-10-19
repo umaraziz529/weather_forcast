@@ -1,7 +1,7 @@
 // Local Weather: vanilla JS. Weather: Open-Meteo. Place name: BigDataCloud (free, no key).
 "use strict";
 const $ = id => document.getElementById(id);
-const LOCATION_ENDPOINT = "/api/location";
+const LOCATION_ENDPOINT = "https://weather-forcasts.ua6b47385.workers.dev/api/location";
 const state = { unit: "C", lat: null, lon: null, place: "", accuracy: null, data: null, geoDenied: false };
 
 // WMO weather codes (Open-Meteo docs) -> label + emoji
